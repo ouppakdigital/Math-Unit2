@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- MathJax configuration (must come BEFORE the script) -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <!-- MathJax loader (correct tag) -->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <title>Oxford University Press Pakistan - Mathwise Book 8 - Unit 2</title>
+
+  <style>
+    :root {
+      --deep: #002147;
+      --sky: #7fd3ff;
+      --mint: #9ff3d0;
+      --sun: #ffd54f;
+      --peach: #ffb199;
+      --pink: #ff6f9b;
+      --card: #ffffff;
+      --muted: #5b6b7a;
+      --bg1: linear-gradient(180deg, #e6f7ff 0%, #fff7f0 60%);
+      --radius: 18px;
+      font-family: "Comic Sans MS", "Chalkboard SE", "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      background: var(--bg1);
+      color: var(--deep)
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 18px auto;
+      padding: 18px
+    }
+
+    header {
+      display: flex;
+      gap: 14px;
+      align-items: center
+    }
+
+    .logo {
+      width: 84px;
+      height: 84px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 30% 20%, #fff 0%, rgba(255, 255, 255, 0.2) 10%, var(--sky) 40%, var(--deep) 100%);
+      box-shadow: 0 10px 30px rgba(2, 33, 71, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #fff;
+      border: 4px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .logo .face {
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 1
+    }
+
+    .title {
+      flex: 1
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0.2px
+    }
+
+    p.lead {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px
+    }
+
+    .quiz-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 16px;
+      box-shadow: 0 12px 30px rgba(2, 33, 71, 0.06)
+    }
+
+    .controls-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap
+    }
+
+    .btn {
+      background: var(--deep);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: 800;
+      box-shadow: 0 8px 18px rgba(2, 33, 71, 0.08);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--deep);
+      border: 2px solid rgba(0, 33, 71, 0.06);
+      box-shadow: none;
+      font-weight: 700
+    }
+
+    .question {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      background: linear-gradient(180deg, #fff, #fbfdff)
+    }
+
+    .qnum {
+      min-width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, var(--sun), #ffd88a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: var(--deep);
+      font-size: 18px;
+      box-shadow: 0 6px 18px rgba(255, 165, 0, 0.08)
+    }
+
+    .qbody {
+      flex: 1
+    }
+
+    .qtext {
+      font-size: 20px;
+      margin: 0 0 12px 0;
+      color: var(--deep);
+      font-weight: 900
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #fff, #f7fbff);
+      border: 2px solid rgba(0, 33, 71, 0.06);
+      cursor: pointer;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
+    }
+
+    .option:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06)
+    }
+
+    .option input {
+      width: 20px;
+      height: 20px
+    }
+
+    .option.correct {
+      background: linear-gradient(90deg, #e6fff0, #f0fff8);
+      border-color: rgba(0, 160, 224, 0.14);
+    }
+
+    .option.incorrect {
+      background: linear-gradient(90deg, #fff0f2, #fff6f8);
+      border-color: rgba(255, 111, 97, 0.14);
+    }
+
+    /* Oxford themed feedback */
+    .feedback-box {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #f0fff7, #ffffff);
+      color: var(--deep);
+      font-weight: 700;
+      border-left: 6px solid var(--mint);
+      display: none;
+    }
+
+    /* Progress */
+    .progress-wrap {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .track {
+      flex: 1;
+      height: 64px;
+      background: linear-gradient(90deg, #fff, #f0fbff);
+      border-radius: 40px;
+      border: 3px solid rgba(0, 33, 71, 0.06);
+      position: relative;
+      overflow: visible
+    }
+
+    .finish-line {
+      position: absolute;
+      right: 8px;
+      top: 0;
+      height: 100%;
+      width: 8px;
+      background: repeating-linear-gradient(180deg, #fff, #fff 6px, #000 6px, #000 12px);
+      border-radius: 4px;
+    }
+
+    .tortoise {
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #fff, #fff7f0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+      transition: left .6s cubic-bezier(.2, .9, .2, 1);
+    }
+
+    .prog-text {
+      min-width: 90px;
+      text-align: right;
+      color: var(--muted);
+      font-weight: 800
+    }
+
+    /* Timer pill */
+    .timer {
+      background: #fff;
+      border: 2px solid rgba(0, 33, 71, 0.06);
+      padding: 8px 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      color: var(--deep);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .big-score {
+      font-size: 44px;
+      font-weight: 900;
+      color: var(--deep);
+      margin: 6px 0
+    }
+
+    @media (max-width:720px) {
+      .tortoise {
+        width: 52px;
+        height: 52px;
+        font-size: 28px
+      }
+
+      .qtext {
+        font-size: 18px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- HEADER -->
+    <header>
+      <div class="logo" aria-hidden="true">
+        <div class="face">😊</div>
+        <div style="font-size:12px;margin-top:6px;font-weight:800">Similarity &amp; Congruence</div>
+      </div>
+      <div class="title">
+        <h1>Mathwise Book 8 - Unit 2</h1>
+        <p class="lead">Select an answer → press Next → see feedback → press Next Question to continue.</p>
+      </div>
+    </header>
+
+    <!-- START CARD -->
+    <div class="quiz-card" id="startCard" aria-live="polite">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>
+          <h2 style="margin:0 0 6px 0">Ready to start?</h2>
+          <p style="margin:0;color:var(--muted)">One question at a time. Oxford-themed feedback with textbook equations.
+          </p>
+        </div>
+        <div class="controls-row">
+          <button id="startBtn" class="btn">Start Quiz</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUIZ AREA -->
+    <div id="quizArea" class="quiz-card" style="display:none" aria-live="polite">
+      <div id="questionContainer"></div>
+
+      <!-- Progress + Timer -->
+      <div class="progress-wrap" aria-hidden="false" style="margin-top:18px">
+        <div style="font-weight:800;color:var(--muted);min-width:90px">Progress</div>
+        <div class="track" id="track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="finish-line" aria-hidden="true"></div>
+          <div class="tortoise" id="tortoise" aria-hidden="true">🐢</div>
+        </div>
+        <div class="prog-text" id="progText">0 / 10</div>
+        <div class="timer" id="timer">Time left: 10:00</div>
+      </div>
+
+      <!-- Controls -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:12px">
+        <div style="color:var(--muted);font-weight:700" id="statusText">Question 1 of 10</div>
+        <div>
+          <button id="prevBtn" class="btn secondary" style="margin-right:8px" disabled>Previous</button>
+          <button id="nextBtn" class="btn" disabled>Next</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="resultArea"></div>
+
+    <div style="height:18px"></div>
+  </div>
+
+  <script>
+    /* ---------------- Config ---------------- */
+    const TOTAL_SECONDS = 10 * 60; // ⏱️ Set your total countdown time here (10 minutes default)
+
+    /* ---------------- MathJax helper ---------------- */
+    function typesetNow() {
+      if (window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise();
+      } else {
+        setTimeout(typesetNow, 120);
+      }
+    }
+
+    /* ---------------- Quiz data ---------------- */
+    const quizData = [
+      {
+        q: "Which of the following numbers is considered an irrational number?",
+        choices: ["0.75", "√16", "22/7", "√3"],
+        correct: 3,
+        explain: `
+      √3 is a non-perfect square. Its decimal representation is non-terminating and non-recurring, meaning it cannot be written as a simple fraction p/q.
+    `
+      },
+      {
+        q: "Round off 0.00456789 to 4 significant figures.",
+        choices: ["0.0045", "0.004567", "0.004568", "0.0046"],
+        correct: 2,
+        explain: `
+      Leading zeros are not significant. Starting from ‘4’, the fourth digit is ‘7’. Since the following digit is ‘8’ (greater than 5), we round up the ‘7’ to ‘8’.
+    `
+      },
+      {
+        q: "What is the value of | 15 - 22 |?",
+        choices: ["-7", "7", "37", "0"],
+        correct: 1,
+        explain: `
+      |15 - 22| = |-7| = 7. The absolute value represents the distance from zero on a number line, which is always non-negative.
+    `
+      },
+      {
+        q: "Which property of real numbers is shown by: a + (b + c) = (a + b) + c?",
+        choices: [
+          "Commutative Property",
+          "Distributive Property",
+          "Associative Property",
+          "Closure Property"
+        ],
+        correct: 2,
+        explain: `
+      The Associative Property states that the way numbers are grouped in addition (using parentheses) does not change the final sum.
+    `
+      },
+      {
+        q: "Identify the nature of the decimal 0.121121112...",
+        choices: [
+          "Terminating",
+          "Recurring (Repeating)",
+          "Non-terminating, Non-recurring",
+          "Rational"
+        ],
+        correct: 2,
+        explain: `
+      The pattern changes (adding an extra '1' each time), so it does not repeat a fixed block of digits. This makes it irrational and non-recurring.
+    `
+      },
+      {
+        q: "Find the square root of the decimal 0.0025.",
+        choices: ["0.5", "0.05", "0.005", "5"],
+        correct: 1,
+        explain: `
+      (0.05) x (0.05) = 0.0025. When you find the square root of a decimal, the result has half the number of decimal places as the original value.
+    `
+      },
+      {
+        q: "Which of the following is a perfect cube?",
+        choices: ["16", "25", "64", "100"],
+        correct: 2,
+        explain: `
+      4 x 4 x 4 = 64. Therefore, 64 is the cube of the integer 4.
+    `
+      },
+      {
+        q: "If a cube-shaped water tank has a volume of 125 m³, what is the length of one side?",
+        choices: ["5 m", "15 m", "25 m", "12.5 m"],
+        correct: 0,
+        explain: `
+      Volume of a cube = side length³. The cube root of 125 is 5, since 5 x 5 x 5 = 125.
+    `
+      },
+      {
+        q: "What is the additive inverse of -3/4?",
+        choices: ["4/3", "-4/3", "3/4", "0"],
+        correct: 2,
+        explain: `
+      The additive inverse of a number is the value that, when added to it, results in zero. -3/4 + 3/4 = 0.
+    `
+      },
+      {
+        q: "A worker measures a length as 12.4 cm but the actual length is 12.5 cm. What is the approximation error?",
+        choices: ["0.1cm", "1.0 cm", "0.01 cm", "24.9 cm"],
+        correct: 0,
+        explain: `
+      Approximation error is the absolute difference between the actual value and the measured/rounded value: |12.5 - 12.4| = 0.1.
+    `
+      }
+    ];
+
+    /* ---------------- State ---------------- */
+    let current = 0;
+    const answers = new Array(quizData.length).fill(null); // selected option index
+    const locked = new Array(quizData.length).fill(false); // whether feedback shown/locked
+
+    // Timer state
+    let startTimeMs = null;
+    let timeLeft = TOTAL_SECONDS; // seconds
+    let timerId = null;
+
+    /* ---------------- Elements ---------------- */
+    const startBtn = document.getElementById('startBtn');
+    const quizArea = document.getElementById('quizArea');
+    const questionContainer = document.getElementById('questionContainer');
+    const statusText = document.getElementById('statusText');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const tortoise = document.getElementById('tortoise');
+    const track = document.getElementById('track');
+    const progText = document.getElementById('progText');
+    const resultArea = document.getElementById('resultArea');
+    const timerEl = document.getElementById('timer');
+
+    /* ---------------- Helpers ---------------- */
+    function formatMMSS(totalSeconds) {
+      const m = Math.floor(totalSeconds / 60);
+      const s = totalSeconds % 60;
+      return `${m}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function updateTimerUI() {
+      timerEl.textContent = `Time left: ${formatMMSS(timeLeft)}`;
+    }
+
+    function startTimer() {
+      startTimeMs = Date.now();
+      updateTimerUI();
+      if (timerId) clearInterval(timerId);
+      timerId = setInterval(() => {
+        timeLeft = Math.max(0, timeLeft - 1);
+        updateTimerUI();
+        if (timeLeft <= 0) {
+          clearInterval(timerId);
+          // auto-finish
+          showResultScreen(true); // true => due to timeout
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+      }
+    }
+
+    function getElapsedSeconds() {
+      // Prefer realtime (Date.now) for accuracy; fallback to TOTAL_SECONDS - timeLeft
+      if (!startTimeMs) return 0;
+      const elapsed = Math.round((Date.now() - startTimeMs) / 1000);
+      return Math.max(elapsed, TOTAL_SECONDS - timeLeft);
+    }
+
+    /* ---------------- Render Question ---------------- */
+    function renderQuestion(index) {
+      const item = quizData[index];
+
+      questionContainer.innerHTML = `
+        <div class="question">
+          <div class="qnum">${index + 1}</div>
+          <div class="qbody">
+            <p class="qtext">${item.q}</p>
+            <div class="options" id="options">
+              ${item.choices.map((choice, i) => `
+                <label class="option">
+                  <input type="radio" name="choice" value="${i}">
+                  <div style="font-weight:800;color:var(--deep)">${choice}</div>
+                </label>
+              `).join('')}
+            </div>
+            <div class="feedback-box" id="feedback"></div>
+          </div>
+        </div>
+      `;
+
+      // restore selection if exists
+      if (answers[index] !== null) {
+        const input = questionContainer.querySelector(`input[value="${answers[index]}"]`);
+        if (input) input.checked = true;
+      }
+
+      // bind option clicks
+      questionContainer.querySelectorAll('.option').forEach((label, i) => {
+        label.addEventListener('click', () => {
+          const input = label.querySelector('input');
+          input.checked = true;
+          answers[index] = Number(input.value);
+          if (!locked[index]) {
+            nextBtn.disabled = false;
+            nextBtn.textContent = 'Next';
+          }
+        });
+      });
+
+      // if locked, re-apply colors and show feedback
+      if (locked[index]) {
+        lockAndColorQuestion(index);
+        showFeedback(index);
+        nextBtn.textContent = (index === quizData.length - 1) ? 'Finish' : 'Next Question';
+        nextBtn.disabled = false;
+      } else {
+        nextBtn.textContent = 'Next';
+        nextBtn.disabled = (answers[index] === null);
+      }
+
+      prevBtn.disabled = index === 0;
+      statusText.textContent = `Question ${index + 1} of ${quizData.length}`;
+
+      typesetNow();
+    }
+
+    /* ---------------- Lock + Color ---------------- */
+    function lockAndColorQuestion(index) {
+      const optionsEl = questionContainer.querySelector('.options');
+      if (!optionsEl) return;
+
+      const labels = optionsEl.querySelectorAll('.option');
+      const selected = answers[index];
+      labels.forEach((lab, i) => {
+        const inp = lab.querySelector('input');
+        if (inp) inp.disabled = true;
+        lab.classList.remove('correct', 'incorrect');
+        if (i === quizData[index].correct) lab.classList.add('correct');
+        if (i === selected && selected !== quizData[index].correct) lab.classList.add('incorrect');
+      });
+    }
+
+    /* ---------------- Feedback ---------------- */
+    function showFeedback(index) {
+      const fb = document.getElementById('feedback');
+      fb.style.display = 'block';
+      fb.innerHTML = quizData[index].explain;   // contains MathJax
+      typesetNow();
+    }
+
+    /* ---------------- Progress (move after lock) ---------------- */
+    function updateProgress() {
+      const lockedCount = locked.filter(Boolean).length;
+      const pct = Math.round((lockedCount / quizData.length) * 100);
+      progText.textContent = `${lockedCount} / ${quizData.length}`;
+      track.setAttribute('aria-valuenow', pct);
+
+      const trackWidth = Math.max(track.offsetWidth - 80, 120);
+      const leftPx = 8 + Math.round((lockedCount / quizData.length) * trackWidth);
+      tortoise.style.left = leftPx + 'px';
+    }
+
+    /* ---------------- Navigation ---------------- */
+    startBtn.addEventListener('click', () => {
+      document.getElementById('startCard').style.display = 'none';
+      quizArea.style.display = 'block';
+      current = 0;
+      answers.fill(null);
+      locked.fill(false);
+      resultArea.innerHTML = '';
+      timeLeft = TOTAL_SECONDS;
+      startTimer();
+
+      renderQuestion(current);
+      updateProgress();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (current > 0) {
+        current--;
+        renderQuestion(current);
+        updateProgress();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      // Phase 1: show feedback (lock) if not yet locked
+      if (!locked[current]) {
+        if (answers[current] === null) {
+          alert('Please select an answer before pressing Next.');
+          return;
+        }
+        locked[current] = true;
+        lockAndColorQuestion(current);
+        showFeedback(current);
+        updateProgress();
+        nextBtn.textContent = (current === quizData.length - 1) ? 'Finish' : 'Next Question';
+        return;
+      }
+
+      // Phase 2: go to next (or finish)
+      if (current < quizData.length - 1) {
+        current++;
+        renderQuestion(current);
+        updateProgress();
+      } else {
+        showResultScreen(false);
+      }
+    });
+
+    function showResultScreen(dueToTimeout) {
+      stopTimer();
+      quizArea.style.display = 'none';
+
+      const score = answers.reduce((acc, val, i) => acc + (val === quizData[i].correct ? 1 : 0), 0);
+      const percent = Math.round((score / quizData.length) * 100);
+      const elapsed = getElapsedSeconds();
+
+      resultArea.innerHTML = `
+        <div class="quiz-card score-panel" role="status" aria-live="polite">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+            <div>
+              <div style="font-size:14px;color:var(--muted)">${dueToTimeout ? 'Time up!' : 'Your Score'}</div>
+              <div class="big-score">${score} / ${quizData.length}</div>
+              <div style="color:var(--muted);font-weight:800">${percent}%</div>
+              <div style="margin-top:6px;color:var(--muted)">Time taken: <strong style="color:var(--deep)">${formatMMSS(elapsed)}</strong></div>
+            </div>
+            <div style="min-width:220px;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-endion.reload()">Try Again</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Keep progress responsive
+    window.addEventListener('resize', updateProgress);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' && !nextBtn.disabled) nextBtn.click();
+      if (e.key === 'ArrowLeft' && !prevBtn.disabled) prevBtn.click();
+    });
+  </script>
+</body>
+
+</html>
