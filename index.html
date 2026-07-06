@@ -427,10 +427,10 @@
     const quizData = [
       {
         q: "Which of the following numbers is considered an irrational number?",
-        choices: ["0.75", "√16", "22/7", "√3"],
+        choices: ["0.75", "\\(\\sqrt{16}\\)", "\\(\\frac{22}{7}\\)", "\\(\\sqrt{3}\\)"],
         correct: 3,
         explain: `
-      √3 is a non-perfect square. Its decimal representation is non-terminating and non-recurring, meaning it cannot be written as a simple fraction p/q.
+      \\(\\sqrt{3}\\) is a non-perfect square. Its decimal representation is non-terminating and non-recurring, meaning it cannot be written as a simple fraction \\(\\frac{p}{q}\\).
     `
       },
       {
@@ -442,15 +442,15 @@
     `
       },
       {
-        q: "What is the value of | 15 - 22 |?",
+        q: "What is the value of \\(|15 - 22|\\)?",
         choices: ["-7", "7", "37", "0"],
         correct: 1,
         explain: `
-      |15 - 22| = |-7| = 7. The absolute value represents the distance from zero on a number line, which is always non-negative.
+      \\(|15 - 22| = |-7| = 7\\). The absolute value represents the distance from zero on a number line, which is always non-negative.
     `
       },
       {
-        q: "Which property of real numbers is shown by: a + (b + c) = (a + b) + c?",
+        q: "Which property of real numbers is shown by: \\(a + (b + c) = (a + b) + c\\)?",
         choices: [
           "Commutative Property",
           "Distributive Property",
@@ -480,7 +480,7 @@
         choices: ["0.5", "0.05", "0.005", "5"],
         correct: 1,
         explain: `
-      (0.05) x (0.05) = 0.0025. When you find the square root of a decimal, the result has half the number of decimal places as the original value.
+      \\((0.05) \\times (0.05) = 0.0025\\). When you find the square root of a decimal, the result has half the number of decimal places as the original value.
     `
       },
       {
@@ -488,23 +488,23 @@
         choices: ["16", "25", "64", "100"],
         correct: 2,
         explain: `
-      4 x 4 x 4 = 64. Therefore, 64 is the cube of the integer 4.
+      \\(4 \\times 4 \\times 4 = 64\\). Therefore, 64 is the cube of the integer 4.
     `
       },
       {
-        q: "If a cube-shaped water tank has a volume of 125 m³, what is the length of one side?",
+        q: "If a cube-shaped water tank has a volume of 125 \\(\\text{m}^3\\), what is the length of one side?",
         choices: ["5 m", "15 m", "25 m", "12.5 m"],
         correct: 0,
         explain: `
-      Volume of a cube = side length³. The cube root of 125 is 5, since 5 x 5 x 5 = 125.
+      Volume of a cube = \\(\\text{side length}^3\\). The cube root of 125 is 5, since \\(5 \\times 5 \\times 5 = 125\\).
     `
       },
       {
-        q: "What is the additive inverse of -3/4?",
-        choices: ["4/3", "-4/3", "3/4", "0"],
+        q: "What is the additive inverse of \\(-\\frac{3}{4}\\)?",
+        choices: ["\\(\\frac{4}{3}\\)", "\\(-\\frac{4}{3}\\)", "\\(\\frac{3}{4}\\)", "0"],
         correct: 2,
         explain: `
-      The additive inverse of a number is the value that, when added to it, results in zero. -3/4 + 3/4 = 0.
+      The additive inverse of a number is the value that, when added to it, results in zero. \\(-\\frac{3}{4} + \\frac{3}{4} = 0\\).
     `
       },
       {
@@ -512,7 +512,7 @@
         choices: ["0.1cm", "1.0 cm", "0.01 cm", "24.9 cm"],
         correct: 0,
         explain: `
-      Approximation error is the absolute difference between the actual value and the measured/rounded value: |12.5 - 12.4| = 0.1.
+      Approximation error is the absolute difference between the actual value and the measured/rounded value: \\(|12.5 - 12.4| = 0.1\\).
     `
       }
     ];
@@ -664,7 +664,7 @@
           answers[index] = Number(input.value);
           if (!locked[index]) {
             nextBtn.disabled = false;
-            nextBtn.textContent = 'Next';
+            nextBtn.textContent = 'Submit';
           }
         });
       });
@@ -676,7 +676,7 @@
         nextBtn.textContent = (index === quizData.length - 1) ? 'Finish' : 'Next';
         nextBtn.disabled = false;
       } else {
-        nextBtn.textContent = 'Next';
+        nextBtn.textContent = 'Submit';
         nextBtn.disabled = (answers[index] === null);
       }
 
@@ -768,7 +768,7 @@
       // Phase 1: show feedback (lock) if not yet locked
       if (!locked[current]) {
         if (answers[current] === null) {
-          alert('Please select an answer before pressing Next.');
+          alert('Please select an answer before pressing Submit.');
           return;
         }
         locked[current] = true;
@@ -867,6 +867,7 @@
         reviewList.classList.toggle('open', reviewOpen);
         reviewToggleBtn.textContent = reviewOpen ? 'Hide Answers' : 'Review Answers';
       });
+      typesetNow();
     }
 
     // Keep progress responsive
